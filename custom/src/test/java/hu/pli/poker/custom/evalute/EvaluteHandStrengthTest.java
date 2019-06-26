@@ -1,5 +1,7 @@
 package hu.pli.poker.custom.evalute;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import hu.pli.poker.custom.board.Board;
@@ -22,7 +24,6 @@ public class EvaluteHandStrengthTest {
 	CoveredCards coveredCards = new CoveredCards(Card.of("Td"), Card.of("Qd"));
 
 	EvaluteHandStrength testObj = new EvaluteHandStrength(board, coveredCards);
-	testObj.evalute();
+	assertEquals(1, testObj.evalute());
     }
-
 }

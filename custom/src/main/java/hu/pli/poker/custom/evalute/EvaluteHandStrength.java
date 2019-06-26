@@ -3,6 +3,7 @@ package hu.pli.poker.custom.evalute;
 import hu.pli.poker.custom.board.Board;
 import hu.pli.poker.custom.board.CoveredCards;
 import hu.pli.poker.custom.card.Card;
+import hu.pli.poker.custom.evalute.data.CactusKevFind;
 import hu.pli.poker.custom.evalute.data.CactusKevFlush;
 import hu.pli.poker.custom.evalute.data.CactusKevUniques5;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +46,7 @@ public class EvaluteHandStrength {
 		result = evaluteValue;
 	    }
 	}
-	return 0;
+	return result;
     }
 
     private int calculateHand() {
@@ -64,6 +65,10 @@ public class EvaluteHandStrength {
 	} else {
 	    if (log.isTraceEnabled()) {
 		result = CactusKevUniques5.lookUP((actHand[0] | actHand[1] | actHand[2] | actHand[3] | actHand[4]) >> 16);
+		if (result == 0) {
+		    result = CactusKevFind
+			    .readCardValue((actHand[0] & 0xFF) * (actHand[1] & 0xFF) * (actHand[2] & 0xFF) * (actHand[3] & 0xFF) * (actHand[4] & 0xFF));
+		}
 		log.trace("is not Flush {}", result);
 	    }
 	}
