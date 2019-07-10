@@ -15,4 +15,9 @@ public class River {
     public String toString() {
 	return card.toString();
     }
+
+    public boolean isExists() {
+	return card != null;
+    }
+
 }

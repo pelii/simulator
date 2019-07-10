@@ -63,4 +63,8 @@ public enum CardColor {
     public static CardColor getColorFromCardId(int cardId) {
 	return decodeByColorId((cardId - 1) / 13);
     }
+
+    public int getCardValue() {
+	return (getColorId() - 1) * 13;
+    }
 }

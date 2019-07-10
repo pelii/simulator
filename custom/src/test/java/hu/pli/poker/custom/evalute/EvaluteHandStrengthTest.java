@@ -21,9 +21,32 @@ public class EvaluteHandStrengthTest {
 		.river(new River(Card.of("Jd")))//
 		.build();
 
-	CoveredCards coveredCards = new CoveredCards(Card.of("Td"), Card.of("Qd"));
+	CoveredCards coveredCards = new CoveredCards(Card.of("Td").getCardId(), Card.of("Qd").getCardId());
 
 	EvaluteHandStrength testObj = new EvaluteHandStrength(board, coveredCards);
 	assertEquals(1, testObj.evalute());
+    }
+
+    @Test
+    public void testCalculate() {
+	EvaluteHandStrength testObj = new EvaluteHandStrength(null);
+
+	int[] cards = new int[5];
+
+	cards[0] = Card.of("Ac").cactusValue();
+	cards[1] = Card.of("3h").cactusValue();
+	cards[2] = Card.of("8d").cactusValue();
+	cards[3] = Card.of("2d").cactusValue();
+	cards[4] = Card.of("Ad").cactusValue();
+
+	assertEquals(3525, testObj.calculateHand(cards));
+    }
+
+    @Test
+    public void testHands() {
+	int[] cards = new int[] { 40, 22, 2, 33, 27, 39, 30 };
+	EvaluteHandStrength testObj = new EvaluteHandStrength(cards);
+	System.out.println(testObj.evalute());
+
     }
 }
